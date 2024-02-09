@@ -1,2 +1,2 @@
 // export { useAllQueries, ExtendedQuery } from "./useAllQueries";
-export { Test } from "./Test";
+export { testa } from "./testa";
