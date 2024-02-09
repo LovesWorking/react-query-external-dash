@@ -1,2 +1,4 @@
 // export { useAllQueries, ExtendedQuery } from "./useAllQueries";
-export { testa } from "./testa";
+// export { Test } from "./Test";
+import "./tailwind.css";
+export { default as Test } from "./Test";
