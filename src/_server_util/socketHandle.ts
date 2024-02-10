@@ -25,7 +25,22 @@ export default function socketHandle({ io }: Props) {
     userType = "unkown",
     allQueries,
   }: User) {
-    console.log(`User ${username} connected`);
+    const extractNumber = (name) => {
+      const match = name.match(/(\d+)$/);
+      return match ? parseInt(match[1], 10) : 1;
+    };
+    let highestNumber = 0;
+    users.forEach((user) => {
+      if (user.username.startsWith(username)) {
+        const number = extractNumber(user.username);
+        if (number >= highestNumber) {
+          highestNumber = number;
+        }
+      }
+    });
+    if (highestNumber > 0) {
+      username = `${username} #${highestNumber + 1}`;
+    }
     id &&
       users.push({
         id: id,
