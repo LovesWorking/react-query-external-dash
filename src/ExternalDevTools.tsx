@@ -9,7 +9,7 @@ interface Props {
   query: ClientQuery;
   socketURL: string;
 }
-export default function SessionsList({ query, socketURL }: Props) {
+export default function ExternalDevTools({ query, socketURL }: Props) {
   const [username, setUsername] = useState("");
   const [currentUser, setCurrentUser] = useState<User>();
   const [clientUsers, setClientUsers] = useState<User[]>([]);
