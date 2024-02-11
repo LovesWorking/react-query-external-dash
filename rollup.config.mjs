@@ -21,6 +21,7 @@ export default {
     "superjson",
     "fast-equals",
     "socket.io-client",
+    "react/jsx-runtime",
   ],
   plugins: [
     postcss({
@@ -35,4 +36,20 @@ export default {
     }),
     terser(),
   ],
+  onwarn: function (warning, warn) {
+    // Skip certain warnings
+    // Ignore "THIS_IS_UNDEFINED" warnings
+    if (warning.code === "THIS_IS_UNDEFINED") {
+      return;
+    }
+    // Ignore "UNRESOLVED_IMPORT" warnings
+    // if (
+    //   warning.code === "UNRESOLVED_IMPORT" &&
+    //   warning.source === "react/jsx-runtime"
+    // ) {
+    //   return;
+    // }
+    // Log other warnings as usual
+    warn(warning);
+  },
 };
