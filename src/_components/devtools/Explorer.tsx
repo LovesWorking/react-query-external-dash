@@ -44,7 +44,7 @@ const Expander = ({ expanded }: { expanded: boolean }) => {
         viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="stroke-current text-[#98a2b3]" // Example color, adjust as needed
+        className="stroke-current text-[#98a2b3]"
       >
         <path
           d="M6 12L10 8L6 4"
