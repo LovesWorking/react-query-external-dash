@@ -1,32 +1,18 @@
 {
   "compilerOptions": {
-    "module": "ESNext", // Ideal for Rollup's ES module support
-    "target": "ES6", // Compile to ES6
-    "lib": ["dom", "dom.iterable", "esnext"], // Specify libraries
-    "jsx": "react-jsx", // For React projects
-    "moduleResolution": "node", // Use Node.js module resolution
-    "esModuleInterop": true, // Enables ESModule interop
-    "skipLibCheck": true, // Skip type checking of declaration files
-    "forceConsistentCasingInFileNames": true, // Force file name casing to be consistent
-    "outDir": "./dist", // Output directory for compiled files
-    "declaration": true, // Generate corresponding '.d.ts' file
-    "declarationDir": "./dist/types", // Directory for declaration files
-    "sourceMap": true // Generate source maps for debugging
-
-    // "strict": true,
-    // "noEmit": true,
-    // "resolveJsonModule": true,
-    // "isolatedModules": true,
-    // "incremental": true,
-    // "plugins": [
-    //   {
-    //     "name": "next"
-    //   }
-    // ],
-    // "paths": {
-    //   "@/*": ["./*"]
-    // }
+    "module": "ESNext",
+    "target": "ES6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "sourceMap": true
   },
-  "include": ["src/**/*"], // Include all files in src
-  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist from compilation
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
