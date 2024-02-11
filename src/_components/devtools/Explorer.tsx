@@ -316,7 +316,6 @@ export default function Explorer({
   const currentDataPath = dataPath ?? []; // NOT USED FOR DATA EXPLORER
 
   const handleChange = (changeEvent: any) => {
-    console.log("changeEvent");
     if (!activeQuery) return null;
     const oldData = activeQuery.state.data;
     let newValue;
@@ -326,7 +325,6 @@ export default function Explorer({
     } else {
       newValue = changeEvent.target.value;
     }
-    console.log("newValue", newValue);
     const newData = updateNestedDataByPath(oldData, currentDataPath, newValue);
     const socketID = currentUser && currentUser.id;
     if (!socketID) return;
@@ -345,9 +343,6 @@ export default function Explorer({
   if (activeQuery === undefined) {
     return null;
   }
-
-  // console.log(subEntryPages);
-  // console.log(subEntries);
 
   return (
     <div className="min-w-[200px] text-xs flex flex-wrap w-full ">

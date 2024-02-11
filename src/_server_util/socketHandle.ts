@@ -11,8 +11,6 @@ let users = [] as User[]; // Connected users
 
 export default function socketHandle({ io }: Props) {
   function handleClose(id: string, username: string) {
-    // Handle user disconnecting
-    console.log(`User ${username} disconecting...`);
     // Remove user from the list
     users = users.filter((user: User) => user.id !== id);
     // Sends new list of users to everyone connected
@@ -52,11 +50,9 @@ export default function socketHandle({ io }: Props) {
     io.emit("users-update", users);
   }
   function handleUserMessage(message: string, username: string) {
-    console.log(`User ${username} sent message: ${message}`);
     io.emit("message", `User ${username} sent message: ${message}`);
   }
   io.on("connection", (socket: Socket) => {
-    console.log("Socket io socket handle");
     let { clientType, username, userType, allQueries } = socket.handshake.query;
     const typeddUsername = Array.isArray(username) ? username[0] : username;
     const typedClientType = Array.isArray(clientType)
@@ -87,7 +83,6 @@ export default function socketHandle({ io }: Props) {
         targetClientId: string;
         message: string;
       }) => {
-        // console.log(`Sending message to ${targetClientId}: ${message}`);
         io.to(targetClientId).emit("message", message);
       }
     );
@@ -97,7 +92,6 @@ export default function socketHandle({ io }: Props) {
       if (!Array.isArray(allQueries)) {
         allQueries = [];
       }
-      console.log("allQueries", allQueries.length);
       // Update allQueries user objecet
       const user = users.find((user) => user.id === socket.id);
       user && (user.allQueries = allQueries);

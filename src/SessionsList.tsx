@@ -21,7 +21,6 @@ export default function SessionsList({ query, socketURL }: Props) {
   useEffect(() => {
     const foundUser = users.find((user) => user.username === username);
     setCurrentUser(foundUser);
-    console.log("currentUser", foundUser);
   }, [setCurrentUser, users, username]);
   useEffect(() => {
     setClientUsers(
@@ -31,6 +30,11 @@ export default function SessionsList({ query, socketURL }: Props) {
   return (
     <Providers>
       <div>
+        <div
+          className={`p-[1px] w-full ${
+            isConnected ? "bg-green-400" : "bg-red-400"
+          }`}
+        ></div>
         <div className="w-full bg-[#EAECF0] flex ">
           <div className="flex">
             <div className="my-auto ml-2"> User </div>

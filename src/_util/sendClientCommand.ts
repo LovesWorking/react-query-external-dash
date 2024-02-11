@@ -2,7 +2,7 @@ import { Socket } from "socket.io-client";
 import { Command } from "../_types/Command";
 interface Props {
   socket: Socket;
-  socketID: String;
+  socketID: string;
   command: Command;
   newValue?: any;
 }
