@@ -2,10 +2,10 @@ import React, { useState, useMemo } from "react";
 import { Query, QueryKey, useQueryClient } from "@tanstack/react-query";
 import { Check, CopiedCopier, Copier, ErrorCopier, List, Trash } from "./svgs";
 import { updateNestedDataByPath } from "./updateNestedDataByPath";
-import { displayValue } from "./displayValue";
 import sendClientCommand from "../../_util/sendClientCommand";
 import { Socket } from "socket.io-client";
 import { User } from "../../_types/User";
+import { useSerializedValue } from "../../_hooks/useSerializedValue";
 function isIterable(x: any): x is Iterable<unknown> {
   return Symbol.iterator in x;
 }
@@ -340,6 +340,7 @@ export default function Explorer({
       },
     });
   };
+  const myDisplayValue = useSerializedValue(value);
 
   if (activeQuery === undefined) {
     return null;
@@ -500,13 +501,13 @@ export default function Explorer({
                       dataPath={currentDataPath}
                       value={value}
                     />
-                    {displayValue(value)}
+                    {myDisplayValue}
                   </span>
                 )}
               </>
             ) : (
               <span className="flex-grow text-[#6938EF] dark:text-[#6938EF]  ">
-                {displayValue(value)}
+                {myDisplayValue}
               </span>
             )}
             {/*  */}
