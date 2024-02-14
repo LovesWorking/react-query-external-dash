@@ -4,7 +4,7 @@
 
 ## Introduction
 
-**React Query External Sync** is a dynamic tool for managing React Query state outside the usual confines of React Query Dev Tools. Ideal for React Native projects, it offers a live state management solution that's accessible to both developers,qa  and non-technical team members.
+**React Query External Sync** is a dynamic tool for managing React Query state outside the usual confines of React Query Dev Tools. Ideal for React Native projects, it offers a live state management solution that's accessible to both developers, qa and non-technical team members.
 
 ### Key Advantages:
 - **Real-time UI Updates**: Instantly see how state changes affect your application's UI without backend alterations.
@@ -83,6 +83,29 @@ import { socketHandle } from "react-query-external-dash";
 ```
 
 - **io**:  The Socket.IO server instance.
+- **Basic socket io Nodejs server example**:
+
+```javascript
+  const { socketHandle } = require("react-query-external-dash");
+const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
+const app = express();
+const server = http.createServer(app);
+// Configure CORS policy for Socket.IO
+const io = new Server(server, {
+  cors: {
+    origin: "*", // Accept connections from any origin
+    methods: ["GET", "POST"],
+  },
+});
+socketHandle({ io });
+app.use(express.static("build"));
+const port = process.env.PORT || 4000;
+server.listen(port, () => console.log(`Server running on port ${port}`));
+
+
+```
 
 ## React Query Dev Tools Integration:
 
