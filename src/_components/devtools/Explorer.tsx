@@ -6,6 +6,7 @@ import sendClientCommand from "../../_util/sendClientCommand";
 import { Socket } from "socket.io-client";
 import { User } from "../../_types/User";
 import { useSerializedValue } from "../../_hooks/useSerializedValue";
+import { serialize } from "superjson";
 function isIterable(x: any): x is Iterable<unknown> {
   return Symbol.iterator in x;
 }
@@ -117,7 +118,7 @@ const DeleteItemButton = ({
       socket: socket,
       socketID: socketID,
       command: {
-        queryKey: activeQuery.queryKey.toString(),
+        queryKey: JSON.stringify(serialize(activeQuery.queryKey).json),
         command: "Data Delete",
         dataPath: dataPath,
       },
@@ -155,11 +156,15 @@ const ClearArrayButton = ({
     // queryClient.setQueryData(activeQuery.queryKey, newData);
     const socketID = currentUser && currentUser.id;
     if (!socketID) return;
+    console.log({
+      newData,
+      queryKey: activeQuery.queryKey,
+    })
     sendClientCommand({
       socket: socket,
       socketID: socketID,
       command: {
-        queryKey: activeQuery.queryKey.toString(),
+        queryKey: JSON.stringify(serialize(activeQuery.queryKey).json),
         command: "Data Update",
         newValue: newData,
       },
@@ -201,11 +206,15 @@ const ToggleValueButton = ({
     // queryClient.setQueryData(activeQuery.queryKey, newData);
     const socketID = currentUser && currentUser.id;
     if (!socketID) return;
+    console.log({
+      newData,
+      queryKey: activeQuery.queryKey,
+    })
     sendClientCommand({
       socket: socket,
       socketID: socketID,
       command: {
-        queryKey: activeQuery.queryKey.toString(),
+        queryKey: JSON.stringify(serialize(activeQuery.queryKey).json),
         command: "Data Update",
         newValue: newData,
       },
@@ -327,12 +336,16 @@ export default function Explorer({
     }
     const newData = updateNestedDataByPath(oldData, currentDataPath, newValue);
     const socketID = currentUser && currentUser.id;
+    console.log({
+      newData,
+      queryKey: activeQuery.queryKey,
+    })
     if (!socketID) return;
     sendClientCommand({
       socket: socket,
       socketID: socketID,
       command: {
-        queryKey: activeQuery.queryKey.toString(),
+        queryKey: JSON.stringify(serialize(activeQuery.queryKey).json),
         command: "Data Update",
         newValue: newData,
       },

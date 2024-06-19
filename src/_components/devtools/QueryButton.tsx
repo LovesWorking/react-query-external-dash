@@ -2,6 +2,7 @@ import { ExtendedQuery } from "../../_types/QueryExternal";
 import { getQueryStatusLabel } from "../../_util/getQueryStatusLabel";
 import { statusTobgColorClass } from "../../_util/statusTobgColorClass";
 import React from "react";
+import { displayValue } from "./displayValue";
 interface Props {
   query: ExtendedQuery;
   setSelected: React.Dispatch<React.SetStateAction<ExtendedQuery | undefined>>;
@@ -28,7 +29,7 @@ export default function QueryButton({ query, setSelected, selected }: Props) {
         {query.observersCount}
       </div>
       <div className="flex justify-between w-full  ">
-        <span className="py-1 px-2">{`["${query.queryKey}"]`}</span>{" "}
+        <span className="py-1 px-2">{`${displayValue(query.queryKey)}`}</span>{" "}
         {false && ( //query.isDisabled() &&
           <p className="text-xs self-stretch flex items-center p-0 px-2 text-[#1d2939] bg-[#d0d5dd] border-b border-[#d0d5dd]">
             disabled
