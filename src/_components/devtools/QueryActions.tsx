@@ -1,5 +1,6 @@
 import { Query, QueryKey } from "@tanstack/react-query";
 import React from "react";
+import { serialize } from "superjson";
 import ActionButton from "./ActionButton";
 import { getQueryStatusLabel } from "../../_util/getQueryStatusLabel";
 import sendClientCommand from "../../_util/sendClientCommand";
@@ -41,7 +42,7 @@ export default function QueryActions({ query, socket, currentUser }: Props) {
       socket: socket,
       socketID: socketID,
       command: {
-        queryKey: query.queryKey.toString(),
+        queryKey: JSON.stringify(serialize(query.queryKey).json),
         command: coomand,
       },
     });
