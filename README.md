@@ -1,5 +1,8 @@
 # React Query External Sync
 
+### Deprecated for a much better external dashboard.
+https://github.com/LovesWorking/rn-better-dev-tools
+
 ![react-query-external-preview](https://github.com/LovesWorking/LovesWorking/assets/111514077/e8c119cc-44bc-48ba-a398-dfba30e44396)
 
 ## Introduction
